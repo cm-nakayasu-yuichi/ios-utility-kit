@@ -4,7 +4,7 @@ import Foundation
 extension Int {
     
     /// 3桁カンマ区切りの文字列
-    public var numberFormatted: String {
+    public var formatted: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = ","
@@ -14,11 +14,7 @@ extension Int {
     
     /// 金額表示用の文字列
     public var currency: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = ","
-        formatter.groupingSize = 3
-        return formatter.string(for: self)!
+        return "¥" + formatted
     }
     
     /// 漢数字に変換した文字列
@@ -48,7 +44,7 @@ extension Int {
     /// - Parameters:
     ///   - length: 必要な文字数
     /// - Returns: 0埋めした文字列
-    func zeroFill(length: Int) -> String {
+    public func zeroFill(length: Int) -> String {
         return string.padding(length: length, pad: "0")
     }
     
@@ -56,12 +52,32 @@ extension Int {
     public var string: String {
         return "\(self)"
     }
+    
+    /// Floatにキャストした値
+    public var float: Float {
+        return Float(self)
+    }
+    
+    /// Doubleにキャストした値
+    public var double: Double {
+        return Double(self)
+    }
 }
 
 // MARK: - Double
 extension Double {
     
-    /// 文字列に変換した値
+    /// Intにキャストした値
+    public var int: Int {
+        return Int(self)
+    }
+    
+    /// Floatにキャストした値
+    public var float: Float {
+        return Float(self)
+    }
+    
+    /// 文字列にキャストした値
     public var string: String {
         return "\(self)"
     }
@@ -70,7 +86,17 @@ extension Double {
 // MARK: - Float
 extension Float {
     
-    /// 文字列に変換した値
+    /// Intにキャストした値
+    public var int: Int {
+        return Int(self)
+    }
+    
+    /// Doubleにキャストした値
+    public var double: Double {
+        return Double(self)
+    }
+    
+    /// 文字列にキャストした値
     public var string: String {
         return "\(self)"
     }

@@ -154,6 +154,26 @@ extension CGFloat {
         let format = "%.\(NSString(format: "%02d", place) as String)f" as NSString
         return NSString(format: format, self * 100) as String
     }
+    
+    /// Intにキャストした値
+    public var int: Int {
+        return Int(self)
+    }
+    
+    /// Floatにキャストした値
+    public var float: Float {
+        return Float(self)
+    }
+    
+    /// Doubleにキャストした値
+    public var double: Double {
+        return Double(self)
+    }
+    
+    /// 文字列にキャストした値
+    public var string: String {
+        return "\(self)"
+    }
 }
 
 // MARK: - 他の型からCGFloatへの変換
