@@ -1,43 +1,46 @@
 import UIKit
 
-/// Chromeを開く用のUIActivity
-public class ChromeActivity: UIActivity {
+open class ChromeActivity: UIActivity {
     
-    private let url: URL
     private let title: String
     
-    public init(url: URL, title: String = "Chromeで開く") {
-        self.url = url
+    public init(title: String = "Chromeで開く") {
         self.title = title
         super.init()
     }
     
-    override public var activityTitle: String? {
+    open override class var activityCategory: UIActivity.Category {
+        return .action
+    }
+    
+    open override var activityType: UIActivity.ActivityType? {
+        return UIActivity.ActivityType("com.google.chrome.ios.openurl")
+    }
+    
+    open override var activityTitle: String? {
         return title
     }
     
     override public var activityImage: UIImage? {
-        return UIImage(named: "icon_chrome")
+        return UIImage(named: "icon_chrome", in: Bundle.module, compatibleWith: nil)
     }
     
-    override public func canPerform(withActivityItems activityItems: [Any]) -> Bool {
-        return UIApplication.shared.canOpenURL(url)
+    open override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
+        for activityItem in activityItems where activityItem is URL {
+            return true
+        }
+        return false
     }
     
-    override public func prepare(withActivityItems activityItems: [Any]) {
-        // NOP.
-    }
-    
-    override public func perform() {
-        let schemedUrlString = "googlechrome://" + url.absoluteString.urlEncoded
-        
-        if let targetUrl = URL(string: schemedUrlString) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(targetUrl, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(targetUrl)
+    open override func prepare(withActivityItems activityItems: [Any]) {
+        for activityItem in activityItems {
+            if let url = activityItem as? URL, UIApplication.shared.canOpenURL(url) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
-        self.activityDidFinish(true)
     }
 }
