@@ -1,7 +1,8 @@
 import UIKit
 
 public struct File {
-    let path: String
+    /// ファイルパス
+    public let path: String
 }
 
 extension File {
