@@ -44,6 +44,14 @@ extension Int {
         return minn + r
     }
     
+    /// 0埋めした文字列を取得する
+    /// - Parameters:
+    ///   - length: 必要な文字数
+    /// - Returns: 0埋めした文字列
+    func zeroFill(length: Int) -> String {
+        return string.padding(length: length, pad: "0")
+    }
+    
     /// 文字列に変換した値
     public var string: String {
         return "\(self)"
