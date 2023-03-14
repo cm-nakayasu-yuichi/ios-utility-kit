@@ -2,7 +2,7 @@ import Foundation
 
 // 参考
 // https://dev.classmethod.jp/articles/user-defaults-wrapped-model/
-@objcMembers public class Configure: NSObject {
+@objcMembers open class Configure: NSObject {
     
     override public init() {
         super.init()
@@ -23,7 +23,7 @@ import Foundation
         }
     }
     
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let propertyName = keyPath else { return }
         
         let key = userDefaultsKey(for: propertyName)
