@@ -3,6 +3,12 @@ import UIKit
 public struct File {
     /// ファイルパス
     public let path: String
+    
+    /// イニシャライザ
+    /// - Parameter path: ファイルパス
+    public init(path: String) {
+        self.path = path
+    }
 }
 
 extension File {
