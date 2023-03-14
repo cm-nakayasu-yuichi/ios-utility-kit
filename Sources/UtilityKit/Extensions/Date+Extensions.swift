@@ -372,11 +372,6 @@ extension Date {
 
 extension Date {
     
-    /// 現時刻オブジェクト
-    public static var now: Date {
-        return Date()
-    }
-    
     /// 0時0分0秒に設定された本日の日付オブジェクト
     public static var today: Date {
         return now.zeroclock
