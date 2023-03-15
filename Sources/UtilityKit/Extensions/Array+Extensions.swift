@@ -2,6 +2,16 @@ import Foundation
 
 extension Array {
     
+    /// 渡したインデックスが安全なインデックスかどうか
+    /// - Parameter index: インデックス
+    /// - Returns: 安全なインデックスかどうか
+    public func isSafe(at index: Int) -> Bool {
+        if !isEmpty, 0 <= index, index < count {
+            return true
+        }
+        return false
+    }
+    
     /// 安全な要素の取り出し
     ///
     ///  ```
@@ -24,7 +34,7 @@ extension Array {
     /// - Parameter index: インデックス
     /// - Returns: 要素
     public func safe(at index: Int) -> Element? {
-        if !isEmpty, 0 <= index, index < count {
+        if isSafe(at: index) {
             return self[index]
         }
         return nil
@@ -168,5 +178,74 @@ extension Array where Element: Equatable {
         while let index = firstIndex(of: targetElement) {
             self[index] = replaceElement
         }
+    }
+}
+
+extension Array {
+    
+    /// 配列内の要素をランダムに取得する
+    var random: Element? {
+        if isEmpty { return nil }
+        let i = Int(arc4random_uniform(UInt32(count)))
+        return self[i]
+    }
+    
+    /// ループさせる場合の次の配列のインデックスを取得する
+    /// - Parameter index: インデックス
+    /// - Returns: 次のインデックス。配列に要素がない場合は Int.min を返す
+    func nextLoopIndex(of index: Int) -> Int {
+        if isEmpty { return Int.min }
+        if index + 1 > lastIndex {
+            return firstIndex
+        } else {
+            return index + 1
+        }
+    }
+    
+    /// ループさせる場合の前の配列のインデックスを取得する
+    /// - Parameter index: インデックス
+    /// - Returns: 前のインデックス。配列に要素がない場合は Int.min を返す
+    func previousLoopIndex(of index: Int) -> Int {
+        if isEmpty { return Int.min }
+        if index - 1 < firstIndex {
+            return lastIndex
+        } else {
+            return index - 1
+        }
+    }
+    
+    /// 指定したインデックスの要素同士の入れ替え(移動)が可能かどうかを返す
+    /// - Parameters:
+    ///   - sourceIndex: 移動する元のインデックス
+    ///   - destinationIndex: 移動する先のインデックス
+    /// - Returns: 要素が入れ替え(移動)可能かどうか
+    func canExchange(from sourceIndex: Int, to destinationIndex: Int) -> Bool {
+        return self.indices.contains(sourceIndex) && self.indices.contains(destinationIndex)
+    }
+    
+    /// 指定したインデックスの要素同士を入れ替える
+    /// - Parameters:
+    ///   - sourceIndex: 移動する元のインデックス
+    ///   - destinationIndex: 移動する先のインデックス
+    /// - Returns: 要素が入れ替え(移動)ができたかどうか
+    mutating func exchange(from sourceIndex: Int, to destinationIndex: Int) -> Bool {
+        if sourceIndex == destinationIndex {
+            return false
+        } else if !canExchange(from: sourceIndex, to: destinationIndex) {
+            return false
+        }
+        swapAt(sourceIndex, destinationIndex)
+        return true
+    }
+    
+    /// 指定したインデックスの要素同士を入れ替えた配列を返す
+    /// - Parameters:
+    ///   - sourceIndex: 移動する元のインデックス
+    ///   - destinationIndex: 移動する先のインデックス
+    /// - Returns: 指定したインデックスの要素同士を入れ替えた配列
+    func exchanged(from sourceIndex: Int, to destinationIndex: Int) -> Array<Element> {
+        var arr = self
+        _ = arr.exchange(from: sourceIndex, to: destinationIndex)
+        return arr
     }
 }
