@@ -82,7 +82,7 @@ extension UIView {
 // MARK: - ドロップシャドウ
 extension UIView {
     
-    func dropShadowBottom(color: UIColor = .black, offset: CGFloat = 5, opacity: Float = 0.07, radius: CGFloat = 2) {
+    public func dropShadowBottom(color: UIColor = .black, offset: CGFloat = 5, opacity: Float = 0.07, radius: CGFloat = 2) {
         layer.masksToBounds = false
         layer.shadowColor = color.cgColor
         layer.shadowOffset = CGSize(width: 0, height: offset)
@@ -90,7 +90,7 @@ extension UIView {
         layer.shadowRadius = radius
     }
     
-    func dropShadowTop(color: UIColor = .black, offset: CGFloat = 2, opacity: Float = 0.14, radius: CGFloat = 2) {
+    public func dropShadowTop(color: UIColor = .black, offset: CGFloat = 2, opacity: Float = 0.14, radius: CGFloat = 2) {
         layer.masksToBounds = false
         layer.shadowColor = color.cgColor
         layer.shadowOffset = CGSize(width: 0, height: -offset)
@@ -192,7 +192,7 @@ extension Array where Element == UIView {
 // MARK: - CALayer
 extension CALayer {
     
-    var borderUIColor: UIColor? {
+    public var borderUIColor: UIColor? {
         get {
             return UIColor(cgColor: borderColor!)
         }

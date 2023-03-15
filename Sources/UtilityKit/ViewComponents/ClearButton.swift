@@ -1,10 +1,10 @@
 import UIKit
 
-class ClearButton: UIButton {
+open class ClearButton: UIButton {
     
-    @IBInspectable var highlightedColor: UIColor? = #colorLiteral(red: 0.7498688102, green: 0.7498688102, blue: 0.7498688102, alpha: 0.5)
+    @IBInspectable public var highlightedColor: UIColor? = #colorLiteral(red: 0.7498688102, green: 0.7498688102, blue: 0.7498688102, alpha: 0.5)
     
-    override var isHighlighted: Bool {
+    override public var isHighlighted: Bool {
         didSet {
             if isHighlighted {
                 backgroundColor = highlightedColor
