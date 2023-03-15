@@ -79,6 +79,27 @@ extension UIView {
     }
 }
 
+// MARK: - ドロップシャドウ
+extension UIView {
+    
+    func dropShadowBottom(color: UIColor = .black, offset: CGFloat = 5, opacity: Float = 0.07, radius: CGFloat = 2) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: offset)
+        layer.shadowOpacity = opacity
+        layer.shadowRadius = radius
+    }
+    
+    func dropShadowTop(color: UIColor = .black, offset: CGFloat = 2, opacity: Float = 0.14, radius: CGFloat = 2) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: -offset)
+        layer.shadowOpacity = opacity
+        layer.shadowRadius = radius
+    }
+}
+
+
 // MARK: - ビューの差秒サイズの取得と設定
 extension UIView {
     
