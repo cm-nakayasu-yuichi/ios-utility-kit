@@ -143,3 +143,13 @@ private extension UIColor {
         return NSString(format: "%02X", n) as String
     }
 }
+
+extension UIColor {
+    
+    public class var random: UIColor {
+        let rgb = (0..<3).map { _ -> CGFloat in
+            return CGFloat(arc4random_uniform(255)) / 255
+        }
+        return UIColor(red: rgb[0], green: rgb[1], blue: rgb[2], alpha: 1.0)
+    }
+}
