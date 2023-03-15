@@ -188,3 +188,16 @@ extension Array where Element == UIView {
         }
     }
 }
+
+// MARK: - CALayer
+extension CALayer {
+    
+    var borderUIColor: UIColor? {
+        get {
+            return UIColor(cgColor: borderColor!)
+        }
+        set {
+            borderColor = newValue?.cgColor
+        }
+    }
+}
