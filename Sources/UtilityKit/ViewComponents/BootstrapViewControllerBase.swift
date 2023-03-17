@@ -9,15 +9,17 @@ open class BootstrapViewControllerBase: UIViewController, UITableViewDelegate, U
     /// テーブルに表示するアイテム
     ///
     /// ```
-    /// open override var sections: [Section] = [
-    ///     ("動作確認", [
-    ///         // thisにはBootstrapViewCpntrollerのインスタンスが代入されている
-    ///         ("画面遷移のテスト", { this in
-    ///             let vc = NewViewController()
-    ///             this.present(vc)
-    ///         }),
-    ///     ]),
-    /// ]
+    /// override func sections() -> [BootstrapViewControllerBase.Section] {
+    ///     return [
+    ///         ("動作確認", [
+    ///             // thisにはBootstrapViewCpntrollerのインスタンスが代入されている
+    ///             ("画面遷移のテスト", { this in
+    ///                 let vc = NewViewController()
+    ///                 this.present(vc)
+    ///             }),
+    ///         ]),
+    ///     ]
+    /// }
     /// ```
     open func sections() -> [Section] { return [] }
         
