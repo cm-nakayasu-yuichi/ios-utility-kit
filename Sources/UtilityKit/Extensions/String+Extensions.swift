@@ -410,14 +410,14 @@ extension String {
 extension String {
     
     public struct Structure {
-        static let number = "0123456789"
-        static let lowercaseAlphabet = "abcdefghijklmnopqrstuvwxyz"
-        static let uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        static let whitespace = " "
-        static let alphabet = lowercaseAlphabet + uppercaseAlphabet
-        static let alphabetNumber = alphabet + number
-        static let alphabetAndWhitespace = alphabet + whitespace
-        static let alphabetNumberAndWhitespace = alphabetNumber + whitespace
+        public static let number = "0123456789"
+        public static let lowercaseAlphabet = "abcdefghijklmnopqrstuvwxyz"
+        public static let uppercaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        public static let whitespace = " "
+        public static let alphabet = lowercaseAlphabet + uppercaseAlphabet
+        public static let alphabetNumber = alphabet + number
+        public static let alphabetAndWhitespace = alphabet + whitespace
+        public static let alphabetNumberAndWhitespace = alphabetNumber + whitespace
     }
     
     /// 指定した文字のみで構成されているかどうかを返す
