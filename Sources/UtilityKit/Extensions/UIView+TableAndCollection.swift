@@ -75,6 +75,18 @@ extension UITableView {
         register(nib, forCellReuseIdentifier: identifier)
     }
     
+    /// テーブルビューにXIBでUIを定義したヘッダ/フッタビューを登録する
+    ///
+    /// ヘッダ/フッタビュークラスと同名のXIBファイルがプロジェクト内に置かれている必要があります
+    ///
+    /// - Parameters:
+    ///   - type: ヘッダ/フッタビューのクラス
+    ///   - identifier: 再利用用のID文字列
+    func register<T: UITableViewCell>(type: T.Type, forHeaderFooterViewReuseIdentifier identifier: String) {
+        let viewName = String(describing: type)
+        let nib = UINib(nibName: viewName, bundle: nil)
+        register(nib, forHeaderFooterViewReuseIdentifier: identifier)
+    }
 }
 
 extension UICollectionView {
