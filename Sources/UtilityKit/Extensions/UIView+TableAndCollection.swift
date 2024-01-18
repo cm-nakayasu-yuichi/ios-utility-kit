@@ -69,7 +69,7 @@ extension UITableView {
     /// - Parameters:
     ///   - type: セルのクラス
     ///   - identifier: 再利用用のID文字列
-    func register<T: UITableViewCell>(type: T.Type, forCellReuseIdentifier identifier: String) {
+    public func register<T: UITableViewCell>(type: T.Type, forCellReuseIdentifier identifier: String) {
         let cellName = String(describing: type)
         let nib = UINib(nibName: cellName, bundle: nil)
         register(nib, forCellReuseIdentifier: identifier)
@@ -82,7 +82,7 @@ extension UITableView {
     /// - Parameters:
     ///   - type: ヘッダ/フッタビューのクラス
     ///   - identifier: 再利用用のID文字列
-    func register<T: UITableViewCell>(type: T.Type, forHeaderFooterViewReuseIdentifier identifier: String) {
+    public func register<T: UITableViewCell>(type: T.Type, forHeaderFooterViewReuseIdentifier identifier: String) {
         let viewName = String(describing: type)
         let nib = UINib(nibName: viewName, bundle: nil)
         register(nib, forHeaderFooterViewReuseIdentifier: identifier)
@@ -98,7 +98,7 @@ extension UICollectionView {
     /// - Parameters:
     ///   - type: セルのクラス
     ///   - identifier: 再利用用のID文字列
-    func register<T: UICollectionViewCell>(type: T.Type, forCellReuseIdentifier identifier: String) {
+    public func register<T: UICollectionViewCell>(type: T.Type, forCellReuseIdentifier identifier: String) {
         let cellName = String(describing: type)
         let nib = UINib(nibName: cellName, bundle: nil)
         register(nib, forCellWithReuseIdentifier: identifier)
