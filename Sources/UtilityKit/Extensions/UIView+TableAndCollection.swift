@@ -59,3 +59,36 @@ extension IndexPath {
         self.init(row: row, section: section)
     }
 }
+
+extension UITableView {
+    
+    /// テーブルビューにXIBでUIを定義したセルを登録する
+    ///
+    /// セルクラスと同名のXIBファイルがプロジェクト内に置かれている必要があります
+    ///
+    /// - Parameters:
+    ///   - type: セルのクラス
+    ///   - identifier: 再利用用のID文字列
+    func register<T: UITableViewCell>(type: T.Type, forCellReuseIdentifier identifier: String) {
+        let cellName = String(describing: type)
+        let nib = UINib(nibName: cellName, bundle: nil)
+        register(nib, forCellReuseIdentifier: identifier)
+    }
+    
+}
+
+extension UICollectionView {
+    
+    /// コレクションビューにXIBでUIを定義したセルを登録する
+    ///
+    /// セルクラスと同名のXIBファイルがプロジェクト内に置かれている必要があります
+    ///
+    /// - Parameters:
+    ///   - type: セルのクラス
+    ///   - identifier: 再利用用のID文字列
+    func register<T: UICollectionViewCell>(type: T.Type, forCellReuseIdentifier identifier: String) {
+        let cellName = String(describing: type)
+        let nib = UINib(nibName: cellName, bundle: nil)
+        register(nib, forCellWithReuseIdentifier: identifier)
+    }
+}
